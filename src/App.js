@@ -1,62 +1,57 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import User from './User'
+import './App.css'
 
 class App extends Component {
   state = {
-    contacts: []
+    users: []
   }
 
-  componentDidMount = () => {
-    if (!JSON.parse(localStorage.getItem('contacts'))) {
-      this.fetchData()
-    } else {
-      console.log('using data from localStorage')
-    }
+  componentDidMount() {
+    this.fetchData().then( users => 
+      this.setState({ users })
+      )
   }
-  
-  fetchData = () => {
-    fetch('https://randomuser.me/api/?results=5')
+
+  fetchData = () => (
+    fetch('https://randomuser.me/api/?results=10')
       .then(res => res.json())
-      .then(data => data.results.map(user => {
-        const {cell, email, age, name, login} = user
-        return { cell, email, age, name, login}
+      .then(data => data.results)
+      .then(users => users.map(user => {
+        const { cell, dob, gender, name } = user
+        return ({
+           name: `${name.first} ${name.last}`,
+           dob: dob.date,
+           gender: gender,
+           cell: cell,
+        })
       }))
-      .then(contacts => this.setState({
-        contacts,
-        isloading: false
-      }))
-      .catch(error => console.log('parsing failed', error))
-  }
-
-  getSnapshotBeforeUpdate = (prevProps, prevState) => {
-    localStorage.setItem('contacts', 'something')
-  }
+  )
   
-  getSnapshotBeforeUpdate = (nextProps, nextState) => {
-    localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
-    const snapshot = JSON.parse(localStorage.getItem('contacts'))
-    return snapshot
-  }
-  
-  componentDidUpdate = (prevProps, prevState, snapshot) => {
-    console.log('snapshot', snapshot)
-  }
-  
-
+  updateState = () => (
+    this.fetchData().then( users => 
+      this.setState({ users })
+      )
+  )
   render() {
-    console.log(this.state.contacts)
-    const {contacts} = this.state
+    console.log(this.state.users)
+    const { users } = this.state
+
     return (
-      <div className="App">
-        {contacts.map(contact => (
-          <div key={contact.login.uuid}>
-            {contact.name.first}
-            {contact.email}
+      <div>
+          <button
+            onClick={this.updateState} 
+            className='update-button'>
+            Update state
+          </button>
+        {users.map(user => (
+          <div key={user.name} className='container'> 
+            <User user={user}/>
           </div>
-        ))}
+          ))}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
