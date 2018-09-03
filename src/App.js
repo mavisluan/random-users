@@ -4,13 +4,25 @@ import './App.css'
 
 class App extends Component {
   state = {
-    users: []
+    users: [],
+    time: null
   }
 
   componentDidMount() {
-    this.fetchData().then( users => 
-      this.setState({ users })
-      )
+    const localData = JSON.parse(localStorage.getItem('users'))
+    const oldTime = JSON.parse(localStorage.getItem('time'))
+    const currentTime = Date.now()
+    const timeAge = (currentTime - oldTime) / (1000 * 60)
+    if (!localData || timeAge >= 1) {
+      this.fetchData().then(users => this.setState({ 
+        users: users, time: Date.now() }))
+       console.log('using fetch API')
+       console.log('oldTime', oldTime)
+       console.log('timeAge', timeAge)
+    } else {    
+        this.setState({ users: localData, time: oldTime})
+        console.log('using local data')     
+    }
   }
 
   fetchData = () => (
@@ -31,10 +43,23 @@ class App extends Component {
   updateState = () => (
     this.fetchData().then( users => 
       this.setState({ users })
-      )
+    )
   )
+  
+  getSnapshotBeforeUpdate = () => {
+    localStorage.setItem('users', JSON.stringify(this.state.users))
+    localStorage.setItem('time', this.state.time)
+    return JSON.parse(localStorage.getItem('time'))
+  }
+  
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
+    console.log('componentDidUpdate', snapshot)
+  }
+  
   render() {
-    console.log(this.state.users)
+    console.log('render this state', this.state.users)
+    console.log('current time', this.state.time)
+
     const { users } = this.state
 
     return (
