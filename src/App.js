@@ -11,10 +11,9 @@ class App extends Component {
     const localData = JSON.parse(localStorage.getItem('users'))
     const oldTime = localStorage.getItem('time')
     const currentTime = Date.now()
-    const dataAge = (currentTime - oldTime) / (1000* 60)
+    const dataAge = Math.round((currentTime - oldTime) / (1000* 60))
 
-    if (!localData || dataAge >= 1) {
-      console.log('dataAge', dataAge)
+    if (!localData || dataAge >= 5) {
       this.fetchData()
       .then(users => {
         localStorage.setItem('users', JSON.stringify(users))
@@ -22,8 +21,6 @@ class App extends Component {
         this.setState({ users })
       })
     } else {
-      console.log('using local data', localData)
-      console.log('dataAge', dataAge)
       this.setState({ users: localData })
     }  
   }
