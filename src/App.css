@@ -1,27 +1,52 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
 .update-button {
   width: 160px;
-  height: 30px;
-  border: 2px solid blue;
+  height: 50px;
+  border: 2px solid lightgray;
   border-radius: 5px;
   font-size: 20px;
-  background-color: blue;
-  color: white;
-  position: relative;
-  left: 380px;;
+  background-color: lightgray;
+  color: black;
+  margin-left: 30px;
+}
+
+.update-button:hover {
+  cursor: pointer;
+  background-color: gray
+}
+
+.demo {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 2000px;
 }
 
 .user {
   display: flex;
   flex-direction: column;
-  border: 2px solid orange;
+  border: 3px solid orange;
+  border-radius: 20px;
   width: 500px;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-left: 30px;
   padding-bottom: 30px;
   align-items: center;
+  justify-content: center;
 }
 
 
 .user div {
   font-size: 24px;
+}
+
+.user img {
+  margin-top: 20px;
+  border-radius: 10px;
 }

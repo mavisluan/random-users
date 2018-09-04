@@ -34,12 +34,13 @@ class App extends Component {
       .then(res => res.json())
       .then(data => data.results)
       .then(users => users.map(user => {
-        const { cell, dob, gender, name } = user
+        const { cell, dob, gender, name, picture } = user
         return ({
            name: `${name.first} ${name.last}`,
            dob: dob.date,
            gender: gender,
            cell: cell,
+           picture: picture
         })
       }))
   )
@@ -51,22 +52,22 @@ class App extends Component {
   )
   
   render() {
-    console.log('render this state', this.state.users)
-
     const { users } = this.state
 
     return (
-      <div>
-          <button
-            onClick={this.updateState} 
-            className='update-button'>
-            Update state
-          </button>
-        {users.map(user => (
-          <div key={user.name} className='container'> 
-            <User user={user}/>
-          </div>
-          ))}
+      <div className='App'>
+        <button
+          onClick={this.updateState} 
+          className='update-button'>
+          Update state
+        </button>
+        <div className='demo'>
+          {users.map(user => (
+            <div key={user.name} className='container'> 
+              <User user={user}/>
+            </div>
+            ))}
+        </div>     
       </div>
     )
   }
