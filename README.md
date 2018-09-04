@@ -1,11 +1,9 @@
 # RandomUsers Project
 
-- This is a demo random users project.
+- This is a demo random users project, which displays a list of random users' information. .
 
 
 # App Functions
-
-- This project displays a list of random users' information. 
 
 The users will be able to get a new list of users by
 
@@ -21,4 +19,4 @@ The users will be able to get a new list of users by
 # Installation instructions
 - clone my repo `https://github.com/mavisluan/random-users.git`
 - install all project dependencies with `yarn install`
-* start the development server with `yarn start`
+- start the development server with `yarn start`
