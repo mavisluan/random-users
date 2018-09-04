@@ -27,24 +27,7 @@ class App extends Component {
       this.setState({ users: localData })
     }  
   }
-  
 
-  // componentDidMount() {
-  //   const localData = JSON.parse(localStorage.getItem('users'))
-  //   const oldTime = JSON.parse(localStorage.getItem('time'))
-  //   const currentTime = Date.now()
-  //   const timeAge = (currentTime - oldTime) / (1000 * 60)
-  //   if (!localData || timeAge >= 1) {
-  //     this.fetchData().then(users => this.setState({ 
-  //       users: users, time: Date.now() }))
-  //      console.log('using fetch API')
-  //      console.log('oldTime', oldTime)
-  //      console.log('timeAge', timeAge)
-  //   } else {    
-  //       this.setState({ users: localData, time: oldTime})
-  //       console.log('using local data')     
-  //   }
-  // }
 
   fetchData = () => (
     fetch('https://randomuser.me/api/?results=10')
@@ -66,16 +49,6 @@ class App extends Component {
       this.setState({ users })
     )
   )
-  
-  // getSnapshotBeforeUpdate = () => {
-  //   localStorage.setItem('users', JSON.stringify(this.state.users))
-  //   localStorage.setItem('time', this.state.time)
-  //   return JSON.parse(localStorage.getItem('time'))
-  // }
-  
-  // componentDidUpdate = (prevProps, prevState, snapshot) => {
-  //   console.log('componentDidUpdate', snapshot)
-  // }
   
   render() {
     console.log('render this state', this.state.users)
