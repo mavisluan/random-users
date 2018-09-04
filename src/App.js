@@ -5,7 +5,6 @@ import './App.css'
 class App extends Component {
   state = {
     users: [],
-    time: null
   }
 
   componentDidMount = () => {
@@ -20,12 +19,12 @@ class App extends Component {
       .then(users => {
         localStorage.setItem('users', JSON.stringify(users))
         localStorage.setItem('time', Date.now())
-        this.setState({ users, time: oldTime })
+        this.setState({ users })
       })
     } else {
       console.log('using local data', localData)
       console.log('dataAge', dataAge)
-      this.setState({ users: localData, time: oldTime })
+      this.setState({ users: localData })
     }  
   }
   
@@ -80,7 +79,6 @@ class App extends Component {
   
   render() {
     console.log('render this state', this.state.users)
-    console.log('current time', this.state.time)
 
     const { users } = this.state
 
