@@ -1,7 +1,7 @@
 # RandomUsers Project
 
-This is a demo random users project, built with ReactJS. 
-It displays a list of random users' information. 
+- This is a demo random users project, built with ReactJS. 
+- It displays a list of random users' information. 
 
 
 # App Functionalty
