@@ -14,7 +14,7 @@ The users will be able to get a new list of users by
 
 # App Screenshot
 
-![](src/screenshot.png)
+<img src='src/screenshot.png' width='600'>
 
 
 # Installation instructions
