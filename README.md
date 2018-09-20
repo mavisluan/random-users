@@ -18,6 +18,7 @@ The users will be able to get a new list of users by
 
 
 # Installation instructions
-- clone my repo `https://github.com/mavisluan/random-users.git`
-- install all project dependencies with `yarn install`
-- start the development server with `yarn start`
+- git clone https://github.com/mavisluan/random-users.git
+- cd random-users
+- yarn install
+- yarn start
